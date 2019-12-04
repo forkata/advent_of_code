@@ -105,5 +105,16 @@ def fuel_required(mass)
   (mass / 3) - 2
 end
 
+def advanced_fuel_required(mass)
+  return 0 if mass <= 6
+
+  fuel = (mass / 3) - 2
+
+  fuel + advanced_fuel_required(fuel)
+end
+
 # Part 1
 puts INPUT.reduce(0) { |sum, n| sum + fuel_required(n) }
+
+# Part 2
+puts INPUT.reduce(0) { |sum, n| sum + advanced_fuel_required(n) }
