@@ -33,5 +33,21 @@ def execute(program)
   end
 end
 
+def brute_force
+  (0..99).each do |noun|
+    (0..99).each do |verb|
+      program = INPUT.dup
+      program[1] = noun
+      program[2] = verb
+
+      return [noun, verb] if execute(program)[0] == 19690720
+    end
+  end
+end
+
 # Part 1
 puts execute(INPUT)[0]
+
+# Part 2
+puts brute_force
+
