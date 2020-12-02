@@ -11,17 +11,11 @@ class Day2
 
       range = range.split("-").map(&:to_i)
       char = char.chop
-      occurrences = password.scan(char)
-      count = occurrences.count
 
-      puts [
-        range.to_s,
-        " [" + char + "] ",
-        " [" + password + "]",
-        " occurences: " + count.to_s
-      ].join
+      # puts "[" + char + "]" + "[" + password[range.first-1] + "]" + "[" + password[range.last-1] + "]"
 
-      count.between?(range.first, range.last)
+      (password[range.first - 1] == char || password[range.last - 1] == char) &&
+        !(password[range.first - 1] == char && password[range.last - 1] == char)
     end
   end
 end
