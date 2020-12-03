@@ -6,6 +6,14 @@ class Day3
   end
 
   def call
+    return traverse(1, 1) *
+      traverse(3, 1) *
+      traverse(5, 1) *
+      traverse(7, 1) *
+      traverse(1, 2)
+  end
+
+  def traverse(right, down)
     trees = 0
     column, row = 0, 0
 
@@ -13,13 +21,13 @@ class Day3
     map_length = input.length
 
     loop do
-      if column + 3 < map_width
-        column += 3
+      if column + right < map_width
+        column += right
       else
         # wrap around
-        column = (column + 3) - map_width
+        column = (column + right) - map_width
       end
-      row += 1
+      row += down
 
       break unless row < map_length
 
