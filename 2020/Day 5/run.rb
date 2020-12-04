@@ -9,7 +9,7 @@ class Day5
     # Rows - 0 - 127
     #
     # First 8: F means "front", B means "back",
-    input.map do |seat|
+    seats = input.map do |seat|
       lower = 0.0
       upper = 127.0
 
@@ -41,10 +41,10 @@ class Day5
         when 'L'
           # lower stays the same
           distance = ((upper - lower) / 2.0).round(half: :down)
-          upper -= distance.to_f
+          upper -= distance
         when 'R'
           distance = ((upper - lower) / 2.0).round(half: :up)
-          lower += distance.to_f
+          lower += distance
         end
 
         # puts "[#{input}] lower #{lower} - upper #{upper}"
@@ -54,7 +54,14 @@ class Day5
       column = lower
 
       row * 8 + column
-    end.max
+    end
+
+    # Find your seat.
+    seats = seats.map(&:to_i)
+    min = seats.min
+    max = seats.max
+
+    puts (min..max).to_a - seats.map(&:to_i)
   end
 end
 
