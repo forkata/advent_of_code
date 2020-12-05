@@ -7,12 +7,14 @@ class Day6
 
   def call
     input.sum do |group|
-			group.
-				split("\n").
-				map(&:chars).
-				flatten.
-				uniq.
-				count
+      group_size = group.split("\n").length
+      group.
+	split("\n").
+	map(&:chars).
+	flatten.
+	tally.
+	reject { |k,v| v != group_size }.
+	count
     end
   end
 end
